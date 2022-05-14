@@ -1,0 +1,31 @@
+{
+    "name": "t3hd/news-search",
+    "type": "typo3-cms-extension",
+    "description": "",
+    "homepage": "https://www.haithemdaoud.com/",
+    "authors": [
+        {
+            "name": "Haithem Daoud",
+            "email": "contact@haithemdaoud.com"
+        }
+    ],
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "keywords": [
+        "TYPO3 CMS"
+    ],
+    "require": {
+        "typo3/cms-core": "^11.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "T3hd\\NewsSearch\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "news_search"
+        }
+    }
+}

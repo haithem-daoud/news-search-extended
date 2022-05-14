@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2021-04-02UTC08:35:340">
+    <header>
+      <authorName>haithem daoud</authorName>
+      <authorEmail>contact@haithemdaoud.com</authorEmail>
+    </header>
+    <body>
+      <trans-unit id="all">
+          <source>All</source>
+      </trans-unit>
+      <trans-unit id="year_filter">
+          <source>Year</source>
+      </trans-unit>
+      <trans-unit id="text_filter">
+          <source>Text</source>
+      </trans-unit>
+      <trans-unit id="submit_filter">
+          <source>Start Search</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

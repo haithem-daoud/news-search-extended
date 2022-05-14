@@ -1,0 +1,41 @@
+<ul class="pagination diff justify-content-center">
+    <f:if condition="{pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+        <li class="previous">
+            <a href="{f:uri.action(action: actionName, arguments:{currentPage: pagination.previousPageNumber, subject: search.subject, year: search.year})}" title="{f:translate(key:'pagination.previous')}" class="previous">
+            </a>
+        </li>
+    </f:if>
+    <li class="{f:if(condition: '{paginator.currentPageNumber} == 1', then: 'current')}">
+        <a href="{f:uri.action(action:actionName, arguments:{currentPage: 1, subject: search.subject, year: search.year})}" title="{f:translate(key:'pagination.first')}" >
+            {pagination.firstPageNumber}
+        </a>
+    </li>
+    <f:if condition="{pagination.hasLessPages}">
+        <li><a href="#">...</a></li>
+    </f:if>
+    <f:for each="{pagination.allPageNumbers}" as="page" iteration="i">
+        <f:if condition="{page} > 1 && !{i.isLast}">
+            <li class="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'current')}">
+                <a href="{f:uri.action(action:actionName, arguments:{currentPage: page, subject: search.subject, year: search.year})}">{page}</a>
+            </li>
+        </f:if>
+    </f:for>
+    <f:if condition="{pagination.hasMorePages}">
+        <li><a href="#">...</a></li>
+    </f:if>
+    <f:if condition="{paginator.numberOfPages} > 1">
+        <li class="{f:if(condition: '{paginator.currentPageNumber} == {pagination.lastPageNumber}', then: 'current')}">
+            <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber, subject: search.subject, year: search.year})}" title="{f:translate(key:'pagination.last')}">
+                {pagination.lastPageNumber}
+            </a>
+        </li>
+    </f:if>
+    <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+        <f:then>
+            <li class="next">
+                <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber, subject: search.subject, year: search.year})}" title="{f:translate(key:'pagination.next')}" class="next">
+                </a>
+            </li>
+        </f:then>
+    </f:if>
+</ul>

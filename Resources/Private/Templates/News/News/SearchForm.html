@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="General" />
+<!--
+	=====================
+		Templates/News/SearchForm.html
+-->
+
+<f:section name="content">
+	<f:form object="{search}" name="search" pageUid="{settings.listPid}" id="news-search" method="POST">
+		<fieldset>
+			<div class="form-group">
+				<f:render section="text_filter" />
+			</div>
+			<div class="form-group">
+				<f:render section="year_filter" arguments="{data: data}" />
+			</div>
+		</fieldset>
+
+		<button type="submit" class="btn btn-default">{f:translate(key:'LLL:EXT:news_search/Resources/Private/Language/locallang.xlf:submit_filter')}</button>
+	</f:form>
+</f:section>
+
+<!-- Year Filter -->
+<f:section name="year_filter">
+	<label for="select-years">{f:translate(key:'LLL:EXT:news_search/Resources/Private/Language/locallang.xlf:year_filter')}</label>
+	<f:form.select class="form-select w-25" id="select-years" property="year" selectAllByDefault="true" multiple="false">
+		<f:form.select.option value="all">{f:translate(key:'LLL:EXT:news_search/Resources/Private/Language/locallang.xlf:all')}</f:form.select.option>
+		<f:for each="{data.single}" key="year" as="months">
+			<f:form.select.option value="{year}">{year}</f:form.select.option>
+		</f:for>
+	</f:form.select>
+</f:section>
+
+<!-- Text Filter -->
+<f:section name="text_filter">
+	<label for="news-subject">{f:translate(key:'LLL:EXT:news_search/Resources/Private/Language/locallang.xlf:text_filter')}</label>
+	<f:form.textfield id="news-subject" class="form-control w-50" placeholder="Search by title" property="subject" />
+</f:section>
+
+</html>

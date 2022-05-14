@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="General" />
+<!--
+	=====================
+		Templates/News/SearchResult.html
+-->
+<f:section name="content">
+	<f:if condition="{news}">
+		<f:then>
+			<div class="news_search">
+				<f:if condition="{settings.hidePagination}">
+					<f:then>
+						<div class="row teaser-list">
+							<f:for each="{news}" as="newsItem" iteration="iterator">
+								<div class="col-md-9 col-sm-18 teaser-small ">
+									<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
+								</div>
+							</f:for>
+						</div>
+					</f:then>
+					<f:else>
+						<div class="row teaser-list">
+							<f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
+								<div class="col-md-9 col-sm-18 teaser-small ">
+									<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
+								</div>
+							</f:for>
+						</div>
+						<f:if condition="{settings.list.paginate.insertBelow}">
+							<f:render partial="Pagination/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, search: search}" />
+						</f:if>
+					</f:else>
+				</f:if>
+			</div>
+
+			<f:comment><!-- HTTP request params --></f:comment>
+			<input type="hidden" id="ajax_settings" value="{settings -> f:format.json()}">
+			<input type="hidden" id="ajax_subject" value="{search.subject}">
+			<input type="hidden" id="ajax_url"  value="{f:uri.action(action: 'searchResult', controller: 'News', pageType: '999666' )}">
+		</f:then>
+		<f:else>
+			<div class="no-news-found text-white px-20">
+				<f:translate key="search-noresult" />
+			</div>
+		</f:else>
+	</f:if>
+</f:section>
+</html>
